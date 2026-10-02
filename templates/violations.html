@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Violations - SafeRide AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-motorcycle"></i> SafeRide AI
+        </div>
+        <ul class="nav-links">
+            <li><a href="/"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="/violations" class="active"><i class="fa-solid fa-shield-halved"></i> Violations</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <header>
+            <h1>Violation Evidence</h1>
+            <p>Saved frames of riders without helmets.</p>
+        </header>
+
+        <div class="evidence-grid">
+            {% if violations|length == 0 %}
+                <div class="no-data glass-panel">
+                    <i class="fa-solid fa-check-circle" style="font-size: 3rem; color: #00ff88; margin-bottom: 1rem;"></i>
+                    <h2>No violations detected yet!</h2>
+                    <p>When someone is detected without a helmet, the evidence will appear here.</p>
+                </div>
+            {% else %}
+                {% for file in violations %}
+                <div class="evidence-card glass-panel">
+                    <img src="{{ url_for('get_evidence', filename=file) }}" alt="Violation Evidence" loading="lazy">
+                    <div class="evidence-info">
+                        <h4><i class="fa-solid fa-clock"></i> {{ file.replace('violation_', '').replace('.jpg', '') }}</h4>
+                        <span class="badge red">NO HELMET</span>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

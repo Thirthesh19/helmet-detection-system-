@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Project specific folders to ignore (media generated during runtime)
+uploads/
+results/
+evidence/
+
+# Large Model Weights (YOLO)
+*.pt
+!best.pt  # (Optional) If your best.pt is smaller than 50MB you can uncomment this to upload it, but usually, it's better to add models to GitHub Releases instead.
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS Generated Files
+.DS_Store
+Thumbs.db

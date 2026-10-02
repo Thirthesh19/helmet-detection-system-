@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Helmet Detection & Violation System</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-motorcycle"></i> SafeRide AI
+        </div>
+        <ul class="nav-links">
+            <li><a href="/" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="/violations"><i class="fa-solid fa-shield-halved"></i> Violations</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <header>
+            <h1>Helmet Detection Dashboard</h1>
+            <p>Real-time AI monitoring for traffic safety</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+                <div class="stat-info">
+                    <h3>Total Riders</h3>
+                    <p id="total_riders">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green"><i class="fa-solid fa-helmet-safety"></i></div>
+                <div class="stat-info">
+                    <h3>Helmet Users</h3>
+                    <p id="helmet_users">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="stat-info">
+                    <h3>No-Helmet Users</h3>
+                    <p id="no_helmet_users">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orange"><i class="fa-solid fa-camera-retro"></i></div>
+                <div class="stat-info">
+                    <h3>Violations Saved</h3>
+                    <p id="total_violations">0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="upload-section glass-panel">
+                <h2><i class="fa-solid fa-cloud-arrow-up"></i> Upload Media</h2>
+                <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+                    <div class="file-drop-area">
+                        <span class="fake-btn">Choose files</span>
+                        <span class="file-msg">or drag and drop here</span>
+                        <input class="file-input" type="file" name="file" accept="image/*,video/*" required>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Analyze Media</button>
+                </form>
+                
+                <hr class="divider">
+                
+                <h2><span class="live-indicator"></span><i class="fa-solid fa-video"></i> Live Camera</h2>
+                <p>Start real-time monitoring using your webcam or CCTV feed.</p>
+                <a href="/video_feed" target="stream_frame" class="btn secondary-btn" onclick="document.getElementById('stream_container').style.display='block'">Start Live Stream</a>
+            </div>
+
+            <div class="stream-section glass-panel" id="stream_container">
+                <h2>Live Detection Stream</h2>
+                <div class="video-wrapper">
+                    <!-- The iframe to load either the webcam or video result -->
+                    <iframe name="stream_frame" src="" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

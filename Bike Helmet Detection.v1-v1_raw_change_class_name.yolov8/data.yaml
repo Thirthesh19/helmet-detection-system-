@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 2
+names: ['helmet', 'no-helmet']
+
+roboflow:
+  workspace: smarthsrp
+  project: bike-helmet-detection-2vdjo-i20tl
+  version: 1
+  license: Public Domain
+  url: https://universe.roboflow.com/smarthsrp/bike-helmet-detection-2vdjo-i20tl/dataset/1
